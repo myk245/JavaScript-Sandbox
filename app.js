@@ -59,7 +59,21 @@ function Customer(firstName, lastName, phone, membership) {
    this.membership = membership; 
 }
 
+// Inherit the Person prototype methods
+Customer.prototype = Object.create(Person.prototype); 
+
 // Create customer 
 const customer1 = new Customer('Tom', 'Smith', '555-555-5555', 'Standard'); 
 
+// Make customer prototype return Customer
+Customer.prototype.constructor = Customer; 
+
 console.log(customer1); 
+
+// Customer greeting
+Customer.prototype.greeting = function () {
+   return `Hello there, ${this.firstName} ${this.lastName}. 
+   Welcome to our company.`
+}
+
+console.log(customer1.greeting()); 
